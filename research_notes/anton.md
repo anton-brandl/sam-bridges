@@ -26,3 +26,11 @@
   - Using the data to finetune SAM would help to evaluate SAM finetuning capabilities. I could look into few-shot learning and analyze how many data points are necessary for getting a model that detects 90% of the OSM bridges
   - I can then use the same data and evaluation for testing alternative solutions like finetuning an existing imagenet trained model or an existing aerial imagery model
   - The goal of this experiment is to find out whether SAM is providing any real benefit for satellite imagery collection campaigns
+
+## 8.6.23
+- I looked at how to finetune the SAM model. The image encoder is quite complex and it's probably not a great idea to finetune it, especially if we have limited data
+- Instead we can keep all the encoders and only finetune the mask decoder in the end. It's quite simplistic and it should be straightforward to do. If it turns out that the image encoder has never seen satellite imagery, we might still need to finetune the image encoder, too
+- A few key questions to decide before moving on:
+  - What type of data do we want to finetune on? We can use the bridges, but what input prompts do we want to use? We can use text input, points, or bounding boxes. What we finetune on, will probably have an inpact on how well the solution works for the given prompt
+  - So, that leads to the question of how we want to use the model later on. It's totally possible to get training data for all three prompts and we can also use any kind of OSM categories. A possible end-result might be to be able to specify any name and/or bounding box and/or point and get a proper aerial imagery segmentation out of it. This could then be used for speeding up any aerial imagery labelling task, it could be used as a standalone mapping tool, to correct OSM maps, or to detect change.
+  - To be determined: What format do the masks need to be in?
