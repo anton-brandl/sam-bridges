@@ -34,3 +34,9 @@
   - What type of data do we want to finetune on? We can use the bridges, but what input prompts do we want to use? We can use text input, points, or bounding boxes. What we finetune on, will probably have an inpact on how well the solution works for the given prompt
   - So, that leads to the question of how we want to use the model later on. It's totally possible to get training data for all three prompts and we can also use any kind of OSM categories. A possible end-result might be to be able to specify any name and/or bounding box and/or point and get a proper aerial imagery segmentation out of it. This could then be used for speeding up any aerial imagery labelling task, it could be used as a standalone mapping tool, to correct OSM maps, or to detect change.
   - To be determined: What format do the masks need to be in?
+
+## 9.6.23
+- One huge application for a working aerial SAM model would be the ability to select objects in drone footage and automatically track or follow them. For instance, if I want to have a go-pro drone that tracks me while I do some sports or follow my car, etc. This is a key advantage of using SAM over a trained aerial imagery model with a fixed set of classes
+
+## 12.6.23
+- The current implementation of segment-anything assumes to get only one box per input image. It would make sense to extend the implementation to also accept multiple boxes, but for now I think it's easier to randomly select one box and also prepare the corresponding GT mask to only have one corresponding object being masked
