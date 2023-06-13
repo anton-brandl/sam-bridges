@@ -40,3 +40,24 @@
 
 ## 12.6.23
 - The current implementation of segment-anything assumes to get only one box per input image. It would make sense to extend the implementation to also accept multiple boxes, but for now I think it's easier to randomly select one box and also prepare the corresponding GT mask to only have one corresponding object being masked
+
+
+## 13.6.23
+- The system runs overall, strangely the validation loss soon stops moving and also the training loss is not at zero
+- It's probably soon time to refactor the code and move the existing project into a more stable code base
+- One thing that is good: The bridges are not as strongly oversegmented as with the original model
+- Other todo's:
+  - Do an evaluation run with original model to get quantitative comparison
+  - Store model and load model functionality
+  - Extracting code for Geometry computations
+  - Adding w&b callbacks to monitor training runs
+  - List of main design decisions and features
+  - Train with points as inputs
+  - Apply new and old model on different tasks (not only bridges) and different bridges
+  - Data augmentation: (Images), points, boxes
+  - (streamlit?) App for pointing hovering over images and automatic segmentation
+  - increase resolution of images
+  - Understand and solve the upsampling artifact in the finetuned masks (checkerboard)
+  - Remove sections of the map where we have no GT, this would yield FP predictions
+  
+  - Add support for dino (language model) as in samgeo
