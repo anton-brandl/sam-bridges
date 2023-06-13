@@ -59,5 +59,7 @@
   - increase resolution of images
   - Understand and solve the upsampling artifact in the finetuned masks (checkerboard)
   - Remove sections of the map where we have no GT, this would yield FP predictions
-  
   - Add support for dino (language model) as in samgeo
+  - Train on only water-bridges?
+  - Only use tiles that have at least one bridge on it somewhere?
+  - Look into why the tuned model totally fails with bounding boxes but somehow works quite well with points. Although we've trained on bounding boxes..
